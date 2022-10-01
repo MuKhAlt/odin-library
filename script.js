@@ -1,3 +1,7 @@
+document.getElementById('new-entry-add').addEventListener('click', function(e) {
+  addNewEntry()
+})
+
 let myLibrary = []
 
 function Book(title, author, pages) {
@@ -21,6 +25,7 @@ function addBookToLibrary(title, author, pages) {
   const newBook = new Book(title, author, pages)
 
   myLibrary.push(newBook)
+  addBookCard(newBook)
 }
 
 /**
@@ -59,10 +64,29 @@ function addBookCard(book) {
   title.innerHTML = 'Title: ' + book.title
   author.innerHTML = 'Author: ' + book.author
   pages.innerHTML = 'Pages: ' + book.pages
-  read.innerHTML = 'Status: ' + book.read ? 'Read' : 'Not read'
+  read.innerHTML = 'Status: ' + (book.read ? 'Read' : 'Not read')
   // add li's to ul
   ul.appendChild(title)
   ul.appendChild(author)
   ul.appendChild(pages)
   ul.appendChild(read)
+}
+
+
+/**
+ * Adds a new book card to the screen,
+ */
+function addNewEntry() {
+  const title = document.getElementById('new-entry-title')
+  const author = document.getElementById('new-entry-author')
+  const pages = document.getElementById('new-entry-pages')
+
+  if (title.value) {
+    addBookToLibrary(title.value, author.value, pages.value)
+    title.value = ''
+    author.value = ''
+    pages.value = ''
+  } else {
+  title.placeholder = "Title can't be empty"
+  }
 }
