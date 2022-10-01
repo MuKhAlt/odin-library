@@ -55,7 +55,7 @@ function addBookCard(book) {
   const author = document.createElement('li')
   const pages = document.createElement('li')
   const read = document.createElement('li')
-
+  // populate li's
   title.innerHTML = 'Title: ' + book.title
   author.innerHTML = 'Author: ' + book.author
   pages.innerHTML = 'Pages: ' + book.pages
