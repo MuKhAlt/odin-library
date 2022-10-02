@@ -1,14 +1,18 @@
 document.getElementById('new-entry-add').addEventListener('click', function(e) {
+  console.log(e);
   addNewEntry()
 })
 
+let id = 0
+
 let myLibrary = []
 
-function Book(title, author, pages) {
+function Book(title, author, pages, id) {
   this.title = title
   this.author = author
   this.pages = pages
   this.read = false
+  this.id = id
 }
 
 Book.prototype.info = function() {
@@ -16,13 +20,15 @@ Book.prototype.info = function() {
 }
 
 /**
- * Stores user's input as a new Book object into myLibrary,
+ * Stores user's input as a new Book object into myLibrary and adds a new Book Card to the DOM,
  * @param {string} title    Book's title.
  * @param {string} author   Book's author name.
  * @param {number} pages    Book's number of pages.
+ * @param {number} id       Book's id
  */
 function addBookToLibrary(title, author, pages) {
-  const newBook = new Book(title, author, pages)
+  const newBook = new Book(title, author, pages, id)
+  id++
 
   myLibrary.push(newBook)
   addBookCard(newBook)
@@ -45,6 +51,8 @@ function displayBooks() {
 function addBookCard(book) {
   // create div
   const div = document.createElement('div')
+  // set id
+  div.id = book.id
   // set class to book
   div.className = 'book'
   // add div to bc
@@ -60,16 +68,20 @@ function addBookCard(book) {
   const author = document.createElement('li')
   const pages = document.createElement('li')
   const read = document.createElement('li')
+  const remove = document.createElement('button')
   // populate li's
   title.innerHTML = 'Title: ' + book.title
   author.innerHTML = 'Author: ' + book.author
   pages.innerHTML = 'Pages: ' + book.pages
   read.innerHTML = 'Status: ' + (book.read ? 'Read' : 'Not read')
+  remove.innerHTML = 'Remove'
+  remove.className = 'remove-button'
   // add li's to ul
   ul.appendChild(title)
   ul.appendChild(author)
   ul.appendChild(pages)
   ul.appendChild(read)
+  ul.appendChild(remove)
 }
 
 
