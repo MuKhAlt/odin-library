@@ -76,6 +76,12 @@ function addBookCard(book) {
   read.innerHTML = 'Status: ' + (book.read ? 'Read' : 'Not read')
   remove.innerHTML = 'Remove'
   remove.className = 'remove-button'
+  remove.addEventListener('click', function(e) {
+    myLibrary = myLibrary.filter((book) => (
+      book.id === e.path[2].id
+    ))
+    e.path[2].remove()
+  })
   // add li's to ul
   ul.appendChild(title)
   ul.appendChild(author)
