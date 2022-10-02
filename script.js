@@ -119,7 +119,3 @@ function addNewEntry() {
   title.placeholder = "Title can't be empty"
   }
 }
-
-function toggleStatus() {
-  console.log('done');
-}
