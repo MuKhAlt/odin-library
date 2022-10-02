@@ -72,3 +72,11 @@ label {
     font-size: large;
     padding: 3px 20px 3px 20px;
 }
+
+.remove-button {
+    font-size: medium;
+    padding: 3px 20px 3px 20px;
+    background-color:antiquewhite;
+    color: rgb(46, 45, 45);
+    border-radius: 1rem;
+}
