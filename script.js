@@ -67,13 +67,24 @@ function addBookCard(book) {
   const title = document.createElement('li')
   const author = document.createElement('li')
   const pages = document.createElement('li')
-  const read = document.createElement('li')
+  const status = document.createElement('li')
+  const statusButton = document.createElement('button')
   const remove = document.createElement('button')
   // populate li's
   title.innerHTML = 'Title: ' + book.title
   author.innerHTML = 'Author: ' + book.author
   pages.innerHTML = 'Pages: ' + book.pages
-  read.innerHTML = 'Status: ' + (book.read ? 'Read' : 'Not read')
+  statusButton.className = 'status-button'
+  statusButton.innerHTML = book.read ? 'Read' : 'Not read'
+  statusButton.addEventListener('click', function(e) {
+    myLibrary.map(function(book) {
+      if (book.id == e.path[3].id) {
+        book.read = !book.read
+        e.path[0].innerHTML = book.read ? 'Read' : 'Not read'
+      }
+    })
+  })
+  status.appendChild(statusButton)
   remove.innerHTML = 'Remove'
   remove.className = 'remove-button'
   remove.addEventListener('click', function(e) {
@@ -86,7 +97,7 @@ function addBookCard(book) {
   ul.appendChild(title)
   ul.appendChild(author)
   ul.appendChild(pages)
-  ul.appendChild(read)
+  ul.appendChild(status)
   ul.appendChild(remove)
 }
 
@@ -107,4 +118,8 @@ function addNewEntry() {
   } else {
   title.placeholder = "Title can't be empty"
   }
+}
+
+function toggleStatus() {
+  console.log('done');
 }
