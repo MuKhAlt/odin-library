@@ -7,12 +7,14 @@ let id = 0
 
 let myLibrary = []
 
-function Book(title, author, pages, id) {
-  this.title = title
-  this.author = author
-  this.pages = pages
-  this.read = false
-  this.id = id
+class Book {
+  constructor(title, author, pages, id) {
+    this.title = title
+    this.author = author
+    this.pages = pages
+    this.read = false
+    this.id = id
+  }
 }
 
 Book.prototype.info = function() {
